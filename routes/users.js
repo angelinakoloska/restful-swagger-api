@@ -8,11 +8,23 @@ var userService = new UserService(db);
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
+  //swagger.tags = ['Users]
+  //swagger.description = "Gets the list of all users"
   let users = await userService.getAll();
   res.send(users);
 });
 
 router.post('/', jsonParser, async function(req, res, next) {
+  //swagger.tags = ['Users]
+  //swagger.description = "Adds the user based on parameters provided in the request's body"
+  /* #swagger.parameters['body'] =  {
+    "name": "body",
+    "in": "body",
+      "schema": {
+        $ref: "#/definitions/User"
+      }
+    }
+  */
   let username = req.body.Username;
   let password = req.body.Password;
   let score = req.body.Score;
@@ -21,6 +33,8 @@ router.post('/', jsonParser, async function(req, res, next) {
 });
 
 router.delete('/:id', jsonParser, async function(req, res, next) {
+    //swagger.tags = ['Users]
+    //swagger.description = "Deletes a user of ID provided in the request's body"
   await userService.delete(req.params.id);
   res.end();
 });
