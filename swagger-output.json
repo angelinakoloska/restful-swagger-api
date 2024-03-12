@@ -23,7 +23,10 @@
     },
     "/users/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Gets the list of all users.",
         "responses": {
           "200": {
             "description": "OK"
@@ -31,7 +34,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Adds the user based on parameters provided in the request's body",
         "parameters": [
           {
             "name": "body",
@@ -46,17 +52,24 @@
             "description": ""
           }
         }
-      }
-    },
-    "/users/{id}": {
+      },
       "delete": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Deletes a user of ID provided in the request's body.",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
