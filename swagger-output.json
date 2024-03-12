@@ -34,9 +34,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": [],
         "description": "Adds the user based on parameters provided in the request's body",
         "parameters": [
           {
@@ -52,13 +50,22 @@
             "description": ""
           }
         }
-      },
+      }
+    },
+    "/users/{id}": {
       "delete": {
         "tags": [
           "Users"
         ],
-        "description": "Deletes a user of ID provided in the request's body.",
+        "description": "Deletes a user with the specified ID.",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the user to delete"
+          },
           {
             "name": "body",
             "in": "body",
@@ -73,8 +80,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "User deleted successfully"
+          },
+          "404": {
+            "description": "User not found"
           }
         }
       }

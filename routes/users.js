@@ -13,23 +13,40 @@ router.get('/', async function(req, res, next) {
     res.send(users);
 });
 router.post('/', jsonParser, async function(req, res, next) {
-    // #swagger.tags = ['Users']
-    // #swagger.description = "Adds the user based on parameters provided in the request's body"
-    /* #swagger.parameters['body'] = {
-          "name": "body",
-          "in": "body",
-          "schema": {
-              "$ref": "#/definitions/User"
-          }
-      } */
-    const {username, password, score} = req.body
-    await userService.create(username, password, score);
-    res.end();
+  // #swagger.tags = ['Users]
+  // #swagger.description = "Adds the user based on parameters provided in the request's body"
+  /* #swagger.parameters['body'] =  {
+    "name": "body",
+    "in": "body",
+      "schema": {
+        $ref: "#/definitions/User"
+      }
+    }
+  */
+  let username = req.body.Username;
+  let password = req.body.Password;
+  let score = req.body.Score;
+  await userService.create(username, password, score)
+  res.end();
 });
-router.delete('/', jsonParser, async function(req, res, next) {
-    // #swagger.tags = ['Users']
-    // #swagger.description = "Deletes a user of ID provided in the request's body."
-    await userService.deleteUser(req.body.id);
-    res.end();
+router.delete('/:id', jsonParser, async function(req, res, next) {
+  /*
+  #swagger.tags = ['Users']
+  #swagger.description = "Deletes a user with the specified ID."
+  #swagger.parameters['id'] = {
+    in: 'path',
+    description: 'ID of the user to delete',
+    required: true,
+    type: 'integer'
+  }
+  #swagger.responses[200] = {
+    description: 'User deleted successfully'
+  }
+  #swagger.responses[404] = {
+    description: 'User not found'
+  }
+  */
+  await userService.delete(req.body.id);
+  res.end();
 });
 module.exports = router;

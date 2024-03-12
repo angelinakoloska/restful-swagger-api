@@ -3,22 +3,26 @@ class UserService {
         this.client = db.sequelize;
         this.User = db.User;
     }
-    async create(Username, Password, Score) {
+
+    async create(username, password, score) {
         return this.User.create({
-            Username: Username,
-            Password: Password,
-            Score: Score
+            Username: username,
+            Password: password,
+            Score: score
         });
     }
+
     async getAll() {
-        return this.User.findAll({
+        return await this.User.findAll({
             where: {}
-        });
+        })
     }
-    async deleteUser(userId) {
+
+    async delete(id) {
         return this.User.destroy({
-            where: { id: userId }
-        });
+            where: {id: id}
+        })
     }
 }
+
 module.exports = UserService;
