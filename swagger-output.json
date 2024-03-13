@@ -11,7 +11,27 @@
     "http"
   ],
   "paths": {
+    "/doc": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/profile": {
       "get": {
         "description": "",
         "responses": {
